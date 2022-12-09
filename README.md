@@ -9,7 +9,7 @@ This incorporates the general absolute location provided by GPS with the precise
 <img src="https://user-images.githubusercontent.com/73020909/205403691-e502c42a-05d7-441c-b5d2-d00805f52f9f.png" width="200">
 
 # How to use it
-Navigate to https://gugajazz.github.io/SoundSpatialization on a modern smartphone and give it permission to access your GPS location. All data including GPS coordinates is kept locally at all times.
+Navigate to https://gugajazz.github.io/Sound_Spatialization on a modern smartphone and give it permission to access your GPS location. All data including GPS coordinates is kept locally at all times.
 
 
 The user should start by walking over to where they want the path to start.\
