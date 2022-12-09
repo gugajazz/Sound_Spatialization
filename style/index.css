@@ -1,0 +1,92 @@
+* {
+  font-family: 'Roboto', 'Roboto', sans-serif;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: min(601px, 100%);
+  background: white;
+}
+.header {
+  text-align: center;
+  background: #f13c20;
+  color: white;
+  font-size: 15px;
+}
+.button {
+  background-color: #f13c20;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  display: inline-block;
+  font-size: 19px;
+  margin: 10px;
+}
+.container tab {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: fixed;
+  align-items: center;
+  background: var(--primary);
+  width: min(601px, 100%);
+  border-top: 1px solid var(--outline);
+  background: #1c3334;
+}
+.group {
+  position: relative;
+  margin-bottom: 45px;
+}
+input {
+  font-size: 17px;
+  padding: 10px 10px 10px 5px;
+  margin: 10px 10px 10px 10px;
+  display: block;
+  width: 300px;
+  border: none;
+  background: #757575;
+  border-bottom: 1px solid #757575;
+  color: white;
+  border-radius: 5px;
+}
+input:focus {
+  outline: none;
+}
+
+/* LABEL ======================================= */
+label {
+  color: #999;
+  font-size: 18px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+
+/* active state */
+input:focus ~ label,
+input:valid ~ label {
+  top: -20px;
+  font-size: 14px;
+  color: #5264ae;
+}
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}

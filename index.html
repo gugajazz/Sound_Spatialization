@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Sound Spatialization</title>
+    <link rel="icon" type="image/x-icon" href="/img/marker.png" />
+    <link rel="stylesheet" href="style/index.css" />
+    <link rel="stylesheet" href="style/styleOl.css" />
+    <link rel="stylesheet" href="style/styleArrow.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!--<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"/>-->
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <style>
+      .map {
+        height: 400px;
+        width: 50px;
+      }
+    </style>
+  </head>
+
+  <body style="margin: 0">
+    <main role="main" class="container">
+      <div
+        class="header"
+        style="
+          display: flex;
+          justify-content: space-evenly;
+          align-items: center;
+        "
+      >
+        <img
+            src="img/help_qm.png"
+            type="button"
+            id="help_qm"
+            value="Show Div"
+            onclick="showDivHelp()"
+            height="40px"
+        />
+        <h1>Sound Spatialization</h1>
+        <img
+          src="img/gear.png"
+          type="button"
+          name="answer"
+          value="Show Div"
+          onclick="showDivSettings()"
+        />
+      </div>
+      <div id="helpDiv" style="display: none" class="answer_list">
+        <div style="display: flex;justify-content: space-evenly;align-items: center;">
+          <h2>How to use Sound Spatialization</h2>
+
+        </div>
+        <div style="display: flex;justify-content: space-evenly;align-items: center;margin-left: 20px;margin-right: 20px">
+          <p>Start of by walking over to where you want your walk to start.<br>
+          Press reset whith the phone screen facing up and pointing at the direction you wish to go.<br>
+          Walk and when you reach a location where your heading must change point your phone towards it and create a new point.<br>
+          Do this untill you have reached the initial point.<br>
+          Now you can press start and be guided by the *beeps*.<br>
+          If you hear one in the left or right you must turn towards that side to keep following the correct heading.<br>
+            <br>
+            When looking at the map there are 3 different types of points, the gold one indicates the user's current position, the red indicates every point that isnt the current point and the blue indicates the point the user currently is on.
+            <img src="img/marker-gold.png" alt="marker blue" height="20px">
+            <img src="img/marker.png" alt="marker blue" height="20px">
+            <img src="img/marker-blue.png" alt="marker blue" height="20px">
+          </p>
+        </div>
+
+        <div style="display: flex;justify-content: space-evenly;align-items: center;">
+          <h2>How Sound Spatialization works</h2>
+        </div>
+
+        <div style="display: flex;justify-content: space-evenly;align-items: center;margin-left: 20px;margin-right: 20px">
+          <p>It allows you to set gps points allong your path, which hold information about the angle you must face to reach the next point.<br>
+            This incorporates the general absolute location provided by gps with the precise relative alpha angle provided by the gyroscope.<br>
+          </p>
+          <img src="img/device-alpha.png" alt="device alpha explanation" height="80px">
+        </div>
+
+        <div style="display: flex;justify-content: space-evenly;align-items: center;">
+          <h2>Why create Sound Spatialization<br>and who is it for</h2>
+        </div>
+        <div style="display: flex;justify-content: space-evenly;align-items: center;margin-left: 20px;margin-right: 20px">
+          <p>
+            We created this website as a proof of concept, because we bellive that with more development time this idea and technologies can help
+            people with vision impairments of varying levels of severity navigate the world in a more confortable, independent and safe way, be it while running a marathon or walking in a park.<br>
+          </p>
+        </div>
+        <hr>
+      </div>
+
+
+      <div id="settingsDiv" style="display: none" class="answer_list">
+        <br>
+        <div style="display: flex;justify-content: space-evenly;align-items: center;">
+          Current location:
+        </div>
+        <div style="display: flex;justify-content: space-evenly;align-items: center;">
+          <input type="text" id="gpsDisplay" color="#000100" disabled/>
+        </div>
+
+        <br>
+        <div style="display: flex;justify-content: space-evenly;align-items: center;">
+          List of all the points saved:
+        </div>
+        <div style="display: flex;justify-content: space-evenly;align-items: center;">
+        <input
+          type="text"
+          id="pointArrayDisplay"
+          disabled
+        />
+        </div>
+
+        <br>
+        <div style="display: flex;justify-content: space-evenly;align-items: center;">
+          Distance untill the next point(meters):
+        </div>
+        <div style="display: flex;justify-content: space-evenly;align-items: center;">
+          <input type="text" id="gpsDistanceDisplay" disabled/>
+        </div>
+
+        <br>
+        <div style="display: flex;justify-content: space-evenly;align-items: center;">
+          The angle you must follow:
+        </div>
+        <div style="display: flex;justify-content: space-evenly;align-items: center;">
+          <input type="text" style="width: auto" id="fowardAlphaDegrees" disabled />
+        </div>
+
+        <br>
+        <div style="display: flex;justify-content: space-evenly;align-items: center;">
+          Distance (meters) from point at which it gets "triggered":
+        </div>
+        <div style="display: flex;justify-content: space-evenly;align-items: center;">
+        <input type="number" id="pointsRange" min="1" max="20" value="5" />
+        </div>
+
+        <br>
+        <div style="display: flex;justify-content: space-evenly;align-items: center;">
+          Angle buffer where you won't get beeps:
+        </div>
+        <div style="display: flex;justify-content: space-evenly;align-items: center;">
+        <input type="number" id="angleBuffer" min="1" max="20" value="10" />
+        </div>
+
+        <br>
+        <div style="display: flex;justify-content: space-evenly;align-items: center;">
+          Time (ms) between sound cues:
+        </div>
+        <div style="display: flex;justify-content: space-evenly;align-items: center;">
+        <input type="number" id="intervalTime" min=500 max=10000 step=100 value=2000> <!--in microSeconds (1000ms = 1s)-->
+        </div>
+
+        <br>
+        <div style="display: flex;justify-content: space-evenly;align-items: center;">
+          Number of gps updates until the map is rendered:
+        </div>
+        <div style="display: flex;justify-content: space-evenly;align-items: center;">
+          <input type="number" id="numberOfUpdatesUntilRender" min=1 max=50 step=1 value=20>
+        </div>
+
+        <br>
+        <div style="display: flex;justify-content: space-evenly;align-items: center;">
+          <button class="button" id="renderCurrentLoc">Render Current Location</button>
+        </div>
+        <hr>
+      </div>
+      <div class="wrapper"><div></div></div>
+      <!--this is the arrow-->
+
+      <section class="tape">
+        <audio src="media/1beep.mp3" crossorigin="anonymous"></audio>
+      </section>
+
+
+      <div class="tab" style="display: flex; justify-content: space-between">
+        <button
+          class="button"
+          style="background-color: #409b00"
+          id="startButton"
+        >
+          Start
+        </button>
+        <button class="button" id="stopButton">Stop</button>
+      </div>
+      <div class="tab" style="display: flex; justify-content: space-between">
+        <button class="button" id="saveLoc">Create Point</button>
+        <button class="button" style="background-color: #757575" id="reset_button">Reset</button>
+      </div>
+
+      <hr>
+      <hr>
+
+      <div class="container">
+        <div id="Map" style="height: 550px; background-color: white"></div>
+      </div>
+    </main>
+
+    <script type="text/javascript" src="src/openlayers.js"></script>
+    <script type="text/javascript" src="src/Handles.js"></script>
+    <script type="text/javascript" src="src/Globals.js"></script>
+    <script type="text/javascript" src="src/SoundController.js"></script>
+    <script type="text/javascript" src="src/OrientationController.js"></script>
+    <script type="text/javascript" src="src/GpsController.js"></script>
+    <script type="text/javascript" src="src/MapController.js"></script>
+    <script type="text/javascript" src="src/ArrowController.js"></script>
+    <script
+      type="text/javascript"
+      src="src/CommunicationController.js"
+    ></script>
+  </body>
+</html>
